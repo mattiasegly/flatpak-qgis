@@ -1,0 +1,20 @@
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - '*.yml'
+name: Flatpak Build
+jobs:
+  flatpak:
+    name: Flatpak Build
+    runs-on: ubuntu-latest
+    container:
+      image: bilelmoussaoui/flatpak-github-actions:kde-5.15-22.08
+      options: --privileged
+    steps:
+    - uses: actions/checkout@v3
+    - uses: flatpak/flatpak-github-actions/flatpak-builder@v5
+      with:
+        bundle: qgis.flatpak
+        manifest-path: org.qgis.qgis.yml
