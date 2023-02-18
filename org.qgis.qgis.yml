@@ -17,6 +17,9 @@ finish-args:
   - --device=dri
   - --filesystem=home
 #
+build-options:
+  env:
+    PYTHONPATH: "/app/lib/python3.10/site-packages:/usr/lib/python3.10/site-packages" #fix "attempting to install a package to a directory that is not on PYTHONPATH and which Python does not read ".pth" files from."
 modules:
   - name: pypi-numpy
     sources:
@@ -44,15 +47,6 @@ modules:
     buildsystem: simple
     build-commands:
       - pip3 install --verbose --no-index --prefix /app PyYAML-6.0-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl
-#
-  - name: pypi-pygments
-    sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/0b/42/d9d95cc461f098f204cd20c85642ae40fbff81f74c300341b8d0e0df14e0/Pygments-2.14.0-py3-none-any.whl
-        sha256: fa7bd7bd2771287c0de303af8bfdfc731f51bd2c6a47ab69d117138893b82717
-    buildsystem: simple
-    build-commands:
-      - pip3 install --verbose --no-index --prefix /app Pygments-2.14.0-py3-none-any.whl
 #
   - name: libzip
     sources:
@@ -151,6 +145,27 @@ modules:
       - make install
     post-install:
       - chmod 755 /app/lib/libtcl*.so
+#
+  - name: postgresql
+    sources:
+      - type: git
+        url: https://git.postgresql.org/git/postgresql.git
+        tag: REL_15_2
+    buildsystem: simple
+    builddir: true
+    build-commands:
+      - ./configure --prefix=/app --with-tcl --with-perl --with-python -with-libxml --with-libxslt -with-lz4 --with-zstd --with-openssl
+      - make
+      - make install
+#
+  - name: pypi-psycopg2-binary #no whl for psychopg2
+    sources:
+      - type: file
+        url: https://files.pythonhosted.org/packages/72/29/e16ac3d2722f2a3bc20823e6acc30d9ad56136652cce1324502adf94da1f/psycopg2_binary-2.9.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+        sha256: 5cbc554ba47ecca8cd3396ddaca85e1ecfe3e48dd57dc5e415e59551affe568e
+    buildsystem: simple
+    build-commands:
+      - pip3 install --verbose --no-index --prefix /app psycopg2_binary-2.9.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
 #
   - name: sqlite3
     sources:
@@ -286,7 +301,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/protocolbuffers/protobuf.git
-        tag: v21.12
+        tag: v22.0
     buildsystem: cmake-ninja
     builddir: true #recommended
     config-opts:
