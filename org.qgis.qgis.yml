@@ -20,6 +20,7 @@ finish-args:
 build-options:
   env:
     PYTHONPATH: "/app/lib/python3.10/site-packages:/usr/lib/python3.10/site-packages" #fix "attempting to install a package to a directory that is not on PYTHONPATH and which Python does not read ".pth" files from."
+#
 modules:
   - name: pypi-numpy
     sources:
@@ -59,6 +60,7 @@ modules:
       - "-DCMAKE_BUILD_TYPE=Release"
       - "-DCMAKE_INSTALL_PREFIX=/app"
       - "-DCMAKE_PREFIX_PATH=/app;/usr"
+      - "-DBUILD_SHARED_LIBS=ON"
       - "-DBUILD_REGRESS=OFF"
       - "-DBUILD_EXAMPLES=OFF"
       - "-DBUILD_DOC=OFF"
@@ -89,6 +91,7 @@ modules:
       - "-DCMAKE_BUILD_TYPE=Release"
       - "-DCMAKE_INSTALL_PREFIX=/app"
       - "-DCMAKE_PREFIX_PATH=/app;/usr"
+      - "-DOPENCL_HEADERS_BUILD_CXX_TESTS=OFF"
 #
   - name: gsl
     sources:
@@ -99,7 +102,7 @@ modules:
     builddir: true
     build-commands:
       - ./autogen.sh
-      - ./configure --prefix=/app
+      - ./configure --prefix=/app --enable-static=no
       - make
       - make install
 #
@@ -114,6 +117,7 @@ modules:
       - "-DCMAKE_BUILD_TYPE=Release"
       - "-DCMAKE_INSTALL_PREFIX=/app"
       - "-DCMAKE_PREFIX_PATH=/app;/usr"
+      - "-DBUILD_SHARED_LIBS=ON"
       - "-DLIBSECRET_SUPPORT=OFF"
       - "-DBUILD_TRANSLATIONS=OFF"
 #
@@ -129,6 +133,8 @@ modules:
       - "-DCMAKE_INSTALL_PREFIX=/app"
       - "-DCMAKE_PREFIX_PATH=/app;/usr"
       - "-DUSE_CCACHE=ON"
+      - "-DBUILD_SHARED_LIBS=ON"
+      - "-DBUILD_TESTING=OFF"
       - "-DGEOS_BUILD_DEVELOPER=OFF"
 #
   - name: tcl
@@ -175,7 +181,7 @@ modules:
     buildsystem: simple
     builddir: true
     build-commands:
-      - CFLAGS="-DSQLITE_ENABLE_COLUMN_METADATA=1" ./configure --prefix=/app --enable-all #enable-all is only; fts4/5 geopoly rtree session
+      - CFLAGS="-DSQLITE_ENABLE_COLUMN_METADATA=1" ./configure --prefix=/app --disable-static --enable-all #enable-all is only; fts4/5 geopoly rtree session
       - make
       - make install
 #
@@ -241,6 +247,8 @@ modules:
       - "-DCMAKE_BUILD_TYPE=Release"
       - "-DCMAKE_INSTALL_PREFIX=/app"
       - "-DCMAKE_PREFIX_PATH=/app;/usr"
+      - "-DBUILD_SHARED_LIBS=ON"
+      - "-DSIDX_BUILD_TESTS=OFF"
 #
   - name: hdf5
     sources:
@@ -254,6 +262,8 @@ modules:
       - "-DCMAKE_INSTALL_PREFIX=/app"
       - "-DCMAKE_PREFIX_PATH=/app;/usr"
       - "-DHDF5_ENABLE_Z_LIB_SUPPORT=ON" #for netcdf-c
+      - "-DBUILD_SHARED_LIBS=ON"
+      - "-DBUILD_STATIC_LIBS=OFF"
       - "-DHDF5_BUILD_CPP_LIB=ON" #for gdal
       - "-DBUILD_TESTING=OFF"
       - "-DHDF5_BUILD_EXAMPLES=OFF"
@@ -269,6 +279,7 @@ modules:
       - "-DCMAKE_BUILD_TYPE=Release"
       - "-DCMAKE_INSTALL_PREFIX=/app"
       - "-DCMAKE_PREFIX_PATH=/app;/usr"
+      - "-DBUILD_SHARED_LIBS=ON"
 #
   - name: swig #gdal recommended
     sources:
@@ -308,6 +319,7 @@ modules:
       - "-DCMAKE_BUILD_TYPE=Release"
       - "-DCMAKE_INSTALL_PREFIX=/app"
       - "-DCMAKE_PREFIX_PATH=/app;/usr"
+      - "-DBUILD_SHARED_LIBS=ON"
       - "-Dprotobuf_BUILD_SHARED_LIBS=ON"
       - "-Dprotobuf_BUILD_TESTS=OFF"
 #
@@ -323,6 +335,7 @@ modules:
       - "-DCMAKE_INSTALL_PREFIX=/app"
       - "-DCMAKE_PREFIX_PATH=/app;/usr"
       - "-DBUILD_WITH_CCACHE=ON"
+      - "-DBUILD_SHARED_LIBS=ON"
       - "-DEXIV2_BUILD_SAMPLES=OFF"
       - "-DEXIV2_BUILD_UNIT_TESTS=OFF"
 #
@@ -406,6 +419,7 @@ modules:
       - "-DCMAKE_BUILD_TYPE=Release"
       - "-DCMAKE_INSTALL_PREFIX=/app"
       - "-DCMAKE_PREFIX_PATH=/app;/usr"
+      - "-DBUILD_SHARED_LIBS=ON"
       - "-DBUILD_TESTS=OFF"
 #
   - name: kadas-qgis
