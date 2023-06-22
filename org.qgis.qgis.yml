@@ -24,32 +24,32 @@ modules:
 #
 # KADAS QGIS
 #
-  - name: pypi-numpy
+  - name: numpy
     sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/6f/72/38f9a536bdb5bfb1682f2520f133ec6e08dde8bcca1f632e347641d90763/numpy-1.24.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-        sha256: 2d926b52ba1367f9acb76b0df6ed21f0b16a1ad87c6720a1121674e5cf63e2b6
+      - type: archive
+        url: https://files.pythonhosted.org/packages/d0/b2/fe774844d1857804cc884bba67bec38f649c99d0dc1ee7cbbf1da601357c/numpy-1.25.0.tar.gz
+        sha256: f1accae9a28dc3cda46a91de86acf69de0d1b5f4edd44a9b0c3ceb8036dfff19
     buildsystem: simple
     build-commands:
-      - pip3 install --verbose --no-index --prefix /app numpy-1.24.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+      - pip3 install --verbose --no-index --no-build-isolation --prefix /app .
 #
-  - name: pypi-jinja2
+  - name: jinja2
     sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/bc/c3/f068337a370801f372f2f8f6bad74a5c140f6fda3d9de154052708dd3c65/Jinja2-3.1.2-py3-none-any.whl
-        sha256: 6088930bfe239f0e6710546ab9c19c9ef35e29792895fed6e6e31a023a182a61
+      - type: archive
+        url: https://files.pythonhosted.org/packages/7a/ff/75c28576a1d900e87eb6335b063fab47a8ef3c8b4d88524c4bf78f670cce/Jinja2-3.1.2.tar.gz
+        sha256: 31351a702a408a9e7595a8fc6150fc3f43bb6bf7e319770cbc0db9df9437e852
     buildsystem: simple
     build-commands:
-      - pip3 install --verbose --no-index --prefix /app Jinja2-3.1.2-py3-none-any.whl
+      - pip3 install --verbose --no-index --no-build-isolation --prefix /app .
 #
-  - name: pypi-pyyaml
+  - name: pyyaml
     sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/02/25/6ba9f6bb50a3d4fbe22c1a02554dc670682a07c8701d1716d19ddea2c940/PyYAML-6.0-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl
-        sha256: f84fbc98b019fef2ee9a1cb3ce93e3187a6df0b2538a651bfb890254ba9f90b5
+      - type: archive
+        url: https://files.pythonhosted.org/packages/36/2b/61d51a2c4f25ef062ae3f74576b01638bebad5e045f747ff12643df63844/PyYAML-6.0.tar.gz
+        sha256: 68fb519c14306fec9720a2a5b45bc9f0c8d1b9c72adf45c37baedfcd949c35a2
     buildsystem: simple
     build-commands:
-      - pip3 install --verbose --no-index --prefix /app PyYAML-6.0-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl
+      - pip3 install --verbose --no-index --no-build-isolation --prefix /app .
 #
   - name: libzip
     sources:
@@ -166,14 +166,14 @@ modules:
       - make
       - make install
 #
-  - name: pypi-psycopg2-binary #no whl for psychopg2
+  - name: psycopg2
     sources:
-      - type: file
-        url: https://files.pythonhosted.org/packages/44/06/6de819cb8604ad884aefe8d12980f53788fc08c4de8ea3ff1b3039746449/psycopg2_binary-2.9.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-        sha256: ae102a98c547ee2288637af07393dd33f440c25e5cd79556b04e3fca13325e5f
+      - type: archive
+        url: https://files.pythonhosted.org/packages/af/c4/5726cddb53fe52f0e839eb3da04322364f14493217ebd5818cc5e4c948a5/psycopg2-2.9.6.tar.gz
+        sha256: f15158418fd826831b28585e2ab48ed8df2d0d98f502a2b4fe619e7d5ca29011
     buildsystem: simple
     build-commands:
-      - pip3 install --verbose --no-index --prefix /app psycopg2_binary-2.9.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+      - pip3 install --verbose --no-index --no-build-isolation --prefix /app .
 #
   - name: sqlite3
     sources:
@@ -191,7 +191,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/OSGeo/PROJ.git
-        tag: 9.2.0
+        tag: 9.2.1
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
