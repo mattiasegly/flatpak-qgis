@@ -10,13 +10,13 @@ rename-icon: qgis
 #
 separate-locales: false
 finish-args:
+  - --share=ipc
   - --share=network
+  - --device=dri
   - --socket=wayland
   - --socket=fallback-x11
-  - --share=ipc
-  - --device=dri
   - --env=PYTHONPATH=/app/lib/python3.10/site-packages:/usr/lib/python3.10/site-packages
-  - --filesystem=home #easier to work with local files and layers
+  - --filesystem=home
 #
 build-options:
   env:
@@ -488,7 +488,8 @@ modules:
         tag: final-3_28_2-kadas
       - type: shell
         commands:
-          - sed -i 's/\${PYQT5_SIP_DIR}/\/app\/lib\/python3.10\/site-packages\/PyQt5\/bindings/g' cmake/SIPMacros.cmake #autodetection doesn't work, force sip to use /app
+          - git grep -l '${Python_SITEARCH}' | xargs sed -i 's/\${Python_SITEARCH}/\/app\/lib\/python3.10\/site-packages/g' #crude fix for forcing cmake setting site-packages to /app instead of /usr
+          - sed -i 's/get_python_lib(plat_specific=1)/"\/app\/lib\/python3.10\/site-packages"/g' cmake/FindSIP.py #force install sip files to /app instead of /usr
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
@@ -496,5 +497,7 @@ modules:
       - "-DCMAKE_INSTALL_PREFIX=/app"
       - "-DCMAKE_PREFIX_PATH=/app;/usr"
       - "-DUSE_CCACHE=ON"
+      - "-DBINDINGS_GLOBAL_INSTALL=TRUE"
+      - "-DSIP_GLOBAL_INSTALL=TRUE"
       - "-DENABLE_TESTS=FALSE"
 #
