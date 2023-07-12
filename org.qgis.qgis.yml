@@ -15,11 +15,12 @@ finish-args:
   - --socket=fallback-x11
   - --share=ipc
   - --device=dri
-  - --filesystem=home
+  - --env=PYTHONPATH=/app/lib/python3.10/site-packages:/usr/lib/python3.10/site-packages
+  - --filesystem=home #easier to work with local files and layers
 #
 build-options:
   env:
-    PYTHONPATH: "/app/lib/python3.10/site-packages:/usr/lib/python3.10/site-packages" #fix "attempting to install a package to a directory that is not on PYTHONPATH and which Python does not read ".pth" files from."
+    PYTHONPATH: /app/lib/python3.10/site-packages:/usr/lib/python3.10/site-packages #fix "attempting to install a package to a directory that is not on PYTHONPATH and which Python does not read ".pth" files from."
 modules:
 #
 # KADAS QGIS
