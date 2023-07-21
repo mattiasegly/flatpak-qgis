@@ -489,7 +489,7 @@ modules:
       - type: shell
         commands:
           - git grep -l '${Python_SITEARCH}' | xargs sed -i 's/\${Python_SITEARCH}/\/app\/lib\/python3.10\/site-packages/g' #crude fix for forcing cmake setting site-packages to /app instead of /usr
-          - sed -i 's/get_python_lib(plat_specific=1)/"\/app\/lib\/python3.10\/site-packages"/g' cmake/FindSIP.py #force install sip files to /app instead of /usr
+          - sed -i 's/sysconfig.get_path.*/"\/app\/lib\/python3.10\/site-packages"/g' cmake/FindSIP.py #force install sip files to /app instead of /usr
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
@@ -497,7 +497,7 @@ modules:
       - "-DCMAKE_INSTALL_PREFIX=/app"
       - "-DCMAKE_PREFIX_PATH=/app;/usr"
       - "-DUSE_CCACHE=ON"
-      - "-DBINDINGS_GLOBAL_INSTALL=TRUE"
-      - "-DSIP_GLOBAL_INSTALL=TRUE"
+      - "-DBINDINGS_GLOBAL_INSTALL=TRUE" #solved with python_sitearch fix
+      - "-DSIP_GLOBAL_INSTALL=TRUE" #analysis.sip needed by kadas, solved with findsip.py fix
       - "-DENABLE_TESTS=FALSE"
 #
