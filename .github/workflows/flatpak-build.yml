@@ -24,6 +24,6 @@ jobs:
     - name: Build
       uses: flatpak/flatpak-github-actions/flatpak-builder@v6
       with:
-        bundle: kadas.flatpak
-        manifest-path: com.sourcepole.kadas.yml
+        bundle: qgis.flatpak
+        manifest-path: org.qgis.qgis.yml
         cache: false
