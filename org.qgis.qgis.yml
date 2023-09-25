@@ -13,9 +13,10 @@ finish-args:
   - --share=ipc
   - --share=network
   - --device=dri
-  - --socket=wayland
+# - --socket=wayland   #forced x11 in openscenegraph
   - --socket=x11
   - --filesystem=home
+  - --env=LD_LIBRARY_PATH=/app/lib:/app/lib64
   - --env=PYTHONPATH=/app/lib/python3.10/site-packages
 #
 build-options:
