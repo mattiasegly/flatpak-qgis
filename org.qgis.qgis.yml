@@ -17,7 +17,7 @@ finish-args:
   - --socket=x11
   - --filesystem=home
   - --env=LD_LIBRARY_PATH=/app/lib:/app/lib64
-  - --env=PYTHONPATH=/app/lib/python3.10/site-packages
+  - --env=PYTHONPATH=/app/lib/python3.11/site-packages
 #
 cleanup:   #https://github.com/flatpak/flatpak-builder/issues/233
   - /include
@@ -33,7 +33,7 @@ cleanup-commands:
 #
 build-options:
   env:
-    PYTHONPATH: /app/lib/python3.10/site-packages:/usr/lib/python3.10/site-packages
+    PYTHONPATH: /app/lib/python3.11/site-packages:/usr/lib/python3.11/site-packages
 #
 modules:
   - flit-core.yml               #required by packaging/qgis core plugins
