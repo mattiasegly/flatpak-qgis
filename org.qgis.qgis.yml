@@ -2,8 +2,6 @@ app-id: org.qgis.qgis
 branch: development
 runtime: org.kde.Platform
 runtime-version: "5.15-23.08"
-base: io.qt.qtwebkit.Base   #https://github.com/mattiasegly/flatpak-qtwebkit
-base-version: "development"
 sdk: org.kde.Sdk
 command: qgis
 rename-icon: qgis
