@@ -1,5 +1,5 @@
 # flatpak-qgis
-<BR>Flatpak builds of KADAS QGIS from git https://github.com/kadas-albireo/QGIS as base for KADAS Albireo, trying to keep it fairly minimal.
+<BR>Flatpak builds of QGIS as base for KADAS Albireo, trying to keep it fairly minimal.
 <BR>This is a test/staging area for flatpak-kadas, so it's very experimental and might not work.
 <BR>
 <BR>Build:
