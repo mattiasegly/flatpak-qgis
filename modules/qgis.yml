@@ -22,7 +22,7 @@ config-opts:
   - -DWITH_QTWEBKIT=FALSE
   - -DWITH_PDAL=FALSE
   - -DWITH_DRACO=FALSE
-  - -DWITH_3D=FALSE
+  - -DGRASS_PREFIX8=/app/grass83
   - -DBINDINGS_GLOBAL_INSTALL=TRUE   #solved with python_sitearch fix
   - -DSIP_GLOBAL_INSTALL=TRUE   #analysis.sip needed by kadas, solved with FindSip.py fix
   - -DHAS_KDE_QT5_PDF_TRANSFORM_FIX=TRUE

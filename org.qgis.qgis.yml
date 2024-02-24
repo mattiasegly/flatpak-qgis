@@ -74,6 +74,8 @@ modules:
   - modules/qwt.yml
   - modules/qtkeychain.yml
   - modules/qca.yml
+  - modules/glu.yml
+  - modules/grass.yml
 
   - modules/psycopg2.yml
   - modules/jinja2.yml
@@ -95,5 +97,7 @@ modules:
   - modules/pytz.yml
   - modules/lxml.yml
   - modules/owslib.yml
+
+  - modules/pyproj.yml
 
   - modules/qgis.yml
