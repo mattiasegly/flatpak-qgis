@@ -34,8 +34,6 @@ build-options:
     PYTHONPATH: /app/lib/python3.11/site-packages:/usr/lib/python3.11/site-packages
 
 modules:
-  - modules/woff2.yml
-  - modules/qtwebkit.yml
   - modules/flit-core.yml
   - modules/packaging.yml
   - modules/tomli.yml
@@ -48,6 +46,8 @@ modules:
   - modules/qscintilla-bindings.yml
   - modules/tcl.yml
   - modules/sqlite.yml
+  - modules/woff2.yml
+  - modules/qtwebkit.yml
   - modules/proj.yml
   - modules/pyproject-metadata.yml
   - modules/meson-python.yml
