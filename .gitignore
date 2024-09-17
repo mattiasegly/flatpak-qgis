@@ -1,4 +1,4 @@
-.vscode/
-.flatpak/
-.flatpak-builder/
-build-dir/
+.vscode
+.flatpak
+.flatpak-builder
+build-dir
