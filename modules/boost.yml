@@ -1,0 +1,13 @@
+name: boost
+sources:
+  - type: git
+    url: https://github.com/boostorg/boost.git
+    tag: boost-1.86.0
+    commit: 65c1319bb92fe7a9a4abd588eff5818d9c2bccf9
+    x-checker-data:
+      type: git
+buildsystem: simple
+builddir: true
+build-commands:
+  - ./bootstrap.sh --prefix=/app
+  - ./b2 install
