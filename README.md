@@ -5,5 +5,5 @@
 <BR>Build:
 <BR>clear && flatpak-builder --jobs=3 --ccache --disable-rofiles-fuse --force-clean build-dir org.qgis.qgis.yml
 <BR>
-<BR>Build & Install:
-<BR>clear && flatpak-builder --user --install --jobs=3 --ccache --disable-rofiles-fuse --force-clean build-dir org.qgis.qgis.yml
+<BR>Install:
+<BR>clear && flatpak-builder --user --install --jobs=3 --ccache --disable-rofiles-fuse --force-clean --delete-build-dirs --disable-download build-dir org.qgis.qgis.yml
