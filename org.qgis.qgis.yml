@@ -1,5 +1,4 @@
 app-id: org.qgis.qgis
-branch: development
 runtime: org.kde.Platform
 runtime-version: "5.15-24.08"
 sdk: org.kde.Sdk
